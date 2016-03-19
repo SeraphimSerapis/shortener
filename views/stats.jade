@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  div.page-header
+    h1 Insights
+  table.table.table-striped
+    each item in result
+      tr
+        td= item.URL
+        td= item.hash
+        td= item.hits
+        td= item.created_at
+  

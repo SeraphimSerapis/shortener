@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div.page-header
+    h1 tme.coffee shortener
+  form#form
+    div.form-group
+      label(for="basic-url") The URL to shorten. Starts with http:// or https://
+      input.form-control#url(type="url", placeholder="#{root}", required pattern="https?://.+")
+    input.btn.btn-primary.btn-shorten(type="submit", value="Submit")
+  h2#link
+  script.
+    $("#form").submit(function (e){
+      e.preventDefault();
+      $.ajax({
+        type: 'POST',
+        url: '/shorten',
+        dataType: 'JSON',
+        data: { url: $('#url').val() },
+        success: function (data) {
+          var dataString = JSON.stringify(data);
+          var resultHTML = '<a class="result" href="' + root + '/' +  data.hash + '">#{root}/' + data.hash + '</a>';
+          $('#link').html(resultHTML);
+          $('#link').hide().fadeIn('slow');
+        }
+      });
+    });
+    
