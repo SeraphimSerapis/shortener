@@ -1,6 +1,6 @@
-# Shortener
+# shortener
 
-A URL shortener for Nodejs using Express and MongoDB
+A URL shortener for Node using Express and MongoDB
 
 ## Start the App
 
